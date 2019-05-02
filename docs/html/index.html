@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>What is ProteoClade? &mdash; ProteoClade 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Requirements" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> ProteoClade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#questions-comments">Questions/Comments?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="targeted-database.html">Targeted Database Searches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="de-novo.html"><em>de novo</em> Searches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ProteoClade 5 Minute Demo</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pcutilities.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcutilities</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcdb.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcdb</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcannotate.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcannotate</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcquant.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcquant</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcconstants.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcconstants</span></code> Module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">ProteoClade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>What is ProteoClade?</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="what-is-proteoclade">
+<h1>What is ProteoClade?<a class="headerlink" href="#what-is-proteoclade" title="Permalink to this headline">¶</a></h1>
+<p>ProteoClade is a Python library for <strong>taxonomic-based annotation and quantification of bottom-up proteomics data</strong>. It is designed to be user-friendly, and has been optimized for speed and storage requirements.</p>
+<p>ProteoClade helps you analyze two general categories of experiments:</p>
+<ol class="arabic simple">
+<li><p><strong>Targeted Database Searches:</strong> Experiments in which a limited number of species are defined ahead of time, such as those involving Patient-Derived Xenografts (PDXs) or host-pathogen interactions. Reference protein sequence databases are used for targeted searches (ex: using Mascot, MaxQuant).</p></li>
+<li><p><strong>De Novo Searches:</strong> Experiments in which the organisms are unspecified ahead of time or involve samples of high taxonomic complexity. Mass spectra are analyzed in the absence of a reference database (ex: using PEAKS, PepNovo).</p></li>
+</ol>
+<p>ProteoClade scales from two organisms to every organism in UniProt. This documentation includes examples from each kind of proteomic workflow to familiarize the user with ProteoClade’s features.</p>
+<p>Check out and cite the publication at <a class="reference external" href="http://www.google.com">To Be Determined</a></p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#software">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#hardware">Hardware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#questions-comments">Questions/Comments?</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#set-up-your-analysis">Set Up Your Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#import-proteoclade">Import ProteoClade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#assemble-required-files">Assemble Required Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#proteoclade-database-pcdb">1. ProteoClade Database (PCDB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#the-proteoclade-taxonomy-mapping-file-pctaxa">2. The ProteoClade Taxonomy Mapping File (PCTAXA)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="targeted-database.html">Targeted Database Searches</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="targeted-database.html#file-format-requirements">File Format Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="targeted-database.html#annotation">Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="targeted-database.html#gene-level-quantitation">Gene Level Quantitation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="de-novo.html"><em>de novo</em> Searches</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="de-novo.html#file-format-requirements">File Format Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="de-novo.html#annotation">Annotation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ProteoClade 5 Minute Demo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#prepare-data">Prepare Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#targeted-database-example">Targeted Database Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#de-novo-example"><em>de novo</em> Example</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pcutilities.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcutilities</span></code> Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#download-uniprot">download_uniprot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#download-uniprot-batch">download_uniprot_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#download-crap">download_cRAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#download-taxonomy">download_taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#load-taxonomy">load_taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#ncbi-check">ncbi_check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#db-stats">db_stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcutilities.html#db-fetch-params">db_fetch_params</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcdb.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcdb</span></code> Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcdb.html#create-pcdb">create_pcdb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcdb.html#merge-fastas">merge_fastas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcannotate.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcannotate</span></code> Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcannotate.html#annotate-peptides">annotate_peptides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcannotate.html#annotate-denovo">annotate_denovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcannotate.html#filter-taxa">filter_taxa</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcquant.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcquant</span></code> Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcquant.html#roll-up">roll_up</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcconstants.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcconstants</span></code> Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#cleave-rules">cleave_rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#uniprot-options">uniprot_options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#ncbi-ranks">ncbi_ranks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#valid-quant-cols">valid_quant_cols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#valid-sample-cols">valid_sample_cols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#valid-pep-cols">valid_pep_cols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#valid-score-cols">valid_score_cols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#basic-annotations">basic_annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcconstants.html#proteoclade-cols">proteoclade_cols</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Requirements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

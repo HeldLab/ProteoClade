@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started &mdash; ProteoClade 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Targeted Database Searches" href="targeted-database.html" />
+    <link rel="prev" title="Requirements" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ProteoClade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#questions-comments">Questions/Comments?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-your-analysis">Set Up Your Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-proteoclade">Import ProteoClade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assemble-required-files">Assemble Required Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#proteoclade-database-pcdb">1. ProteoClade Database (PCDB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-proteoclade-taxonomy-mapping-file-pctaxa">2. The ProteoClade Taxonomy Mapping File (PCTAXA)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="targeted-database.html">Targeted Database Searches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="de-novo.html"><em>de novo</em> Searches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ProteoClade 5 Minute Demo</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pcutilities.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcutilities</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcdb.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcdb</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcannotate.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcannotate</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcquant.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcquant</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcconstants.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcconstants</span></code> Module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProteoClade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="set-up-your-analysis">
+<h2>Set Up Your Analysis<a class="headerlink" href="#set-up-your-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Create a new folder to hold experimental files and results, and navigate to it in the command line of your operating system. This will be your <strong>working directory</strong>. ProteoClade will use this directory by default to look for sequence, taxonomy, and experimental files.</p>
+<p>For experimental files, refer to the file format requirements for <a class="reference external" href="targeted-database.html#file-format-requirements">targeted searches</a> or <a class="reference external" href="de-novo.html#file-format-requirements">*de novo* searches</a>.</p>
+</div>
+<div class="section" id="import-proteoclade">
+<h2>Import ProteoClade<a class="headerlink" href="#import-proteoclade" title="Permalink to this headline">¶</a></h2>
+<p>Common ProteoClade functions are most easily made available by importing everything from the package. Open a Python 3.6+ shell from the command line and then import:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">proteoclade</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="assemble-required-files">
+<h2>Assemble Required Files<a class="headerlink" href="#assemble-required-files" title="Permalink to this headline">¶</a></h2>
+<p>ProteoClade needs to generate two files:</p>
+<div class="section" id="proteoclade-database-pcdb">
+<h3>1. ProteoClade Database (PCDB)<a class="headerlink" href="#proteoclade-database-pcdb" title="Permalink to this headline">¶</a></h3>
+<p>In order to efficiently map experimental peptides to taxa and genes, a SQLite database (.pcdb) is generated using FASTA-formatted files. ProteoClade facilitates this by retrieving user-specified taxa from UniProt.</p>
+<p>Downloading FASTA files from UniProt can be accomplished using the function <a class="reference external" href="pcutilities.html#download-uniprot">download_uniprot</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">download_uniprot</span><span class="p">(</span><span class="o">*</span><span class="n">targets</span><span class="p">,</span> <span class="n">download_folder</span> <span class="o">=</span> <span class="s1">&#39;fastas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where targets are tuples containing (taxonomyID, database_type). The download folder will create a ‘fastas’ folder in your working directory if one does not already exist.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">download_uniprot</span><span class="p">((</span><span class="mi">9606</span><span class="p">,</span><span class="s1">&#39;sr&#39;</span><span class="p">),(</span><span class="mi">10090</span><span class="p">,</span><span class="s1">&#39;sr&#39;</span><span class="p">))</span>
+<span class="go"># Downloads the human and mouse Swiss-Prot reference proteomes</span>
+</pre></div>
+</div>
+<p>Alternatively, <a class="reference external" href="pcutilities.html#download-uniprot-batch">download_uniprot_batch</a> can be used to read a tab-delimited file to download multiple entries.</p>
+<p>Optional step: once FASTA files have been downloaded, users may elect to include additional FASTA files by dragging and dropping them into the same directory as any that were downloaded by ProteoClade. User-supplied FASTA files are expected to have headers adhering loosely to the UniProt format. Only three fields are required:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">db</span><span class="o">|</span><span class="n">UniqueIdentifier</span><span class="o">|</span><span class="n">EntryName</span> <span class="n">OX</span><span class="o">=</span><span class="n">TaxonID</span> <span class="n">GN</span><span class="o">=</span><span class="n">GeneName</span>
+</pre></div>
+</div>
+<p>Where TaxonID is the NCBI-assigned taxonomy identifier, and GeneName is the gene symbol. If no GeneName is found, the UniProt UniqueIdentifier is substituted.</p>
+<p>Optional step: all FASTA files can be merged into a single file for database search engines using the function <a class="reference external" href="pcdb.html#merge-fastas">merge_fastas</a>. This function will warn on the first incorrect header supplied but will not terminate. Note that incorrectly formatted headers will be discarded when a PCDB is created.</p>
+<p>Finally, the PCDB file can be created using the <a class="reference external" href="pcdb.html#create-pcdb">create_pcdb</a> function. ProteoClade enables the user to specify several parameters which should match the experimental, analytical, and informatics conditions of the experiment. An <em>in silico</em> digest is performed with these parameters so that experimentally-detected peptides can be matched. Please refer to the function’s documentation for all of the parameters.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_pcdb</span><span class="p">(</span><span class="s1">&#39;human_mouse_swissprot&#39;</span><span class="p">)</span>
+<span class="go">    # Creates a pcdb file using trypsin and all default parameters</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-proteoclade-taxonomy-mapping-file-pctaxa">
+<h3>2. The ProteoClade Taxonomy Mapping File (PCTAXA)<a class="headerlink" href="#the-proteoclade-taxonomy-mapping-file-pctaxa" title="Permalink to this headline">¶</a></h3>
+<p>Annotating and taxa requires taxonomy mapping, which ProteoClade will source from NCBI. This is accomplished with the function <a class="reference external" href="pcutilities.html#download-taxonomy">download_taxonomy</a>. Note that you should store the PCDB and PCTAXA files together, as taxonomy ID assignment may change over time. For ease of identification, contaminants are mapped with a TaxonID of -1 and a taxon name of “CONTAMINANT” at every level of the hierarchy, and this should be reflected in any contaminant FASTAs included (the function to download the cRAPome has this feature already built-in).</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">download_taxonomy</span><span class="p">()</span>
+<span class="go">    #Retrieves and builds the PCTAXA file in the working directory, named by the date it was retrieved</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="targeted-database.html" class="btn btn-neutral float-right" title="Targeted Database Searches" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Requirements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

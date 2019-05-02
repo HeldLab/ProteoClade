@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pcdb Module &mdash; ProteoClade 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pcannotate Module" href="pcannotate.html" />
+    <link rel="prev" title="pcutilities Module" href="pcutilities.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ProteoClade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#questions-comments">Questions/Comments?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="targeted-database.html">Targeted Database Searches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="de-novo.html"><em>de novo</em> Searches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ProteoClade 5 Minute Demo</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pcutilities.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcutilities</span></code> Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcdb</span></code> Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-pcdb">create_pcdb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merge-fastas">merge_fastas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcannotate.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcannotate</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcquant.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcquant</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcconstants.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcconstants</span></code> Module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProteoClade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcdb</span></code> Module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pcdb.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-proteoclade.pcdb"></span><div class="section" id="pcdb-module">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">pcdb</span></code> Module<a class="headerlink" href="#pcdb-module" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#create-pcdb">create_pcdb</a></p></li>
+<li><p><a class="reference internal" href="#merge-fastas">merge_fastas</a></p></li>
+</ul>
+<div class="section" id="create-pcdb">
+<h2>create_pcdb<a class="headerlink" href="#create-pcdb" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="proteoclade.pcdb.create_pcdb">
+<code class="descclassname">proteoclade.pcdb.</code><code class="descname">create_pcdb</code><span class="sig-paren">(</span><em>database_name</em>, <em>fasta_directory='fastas'</em>, <em>min_length=7</em>, <em>max_length=55</em>, <em>missed_cleavages=2</em>, <em>m_cleave=True</em>, <em>li_swap=True</em>, <em>rule='trypsin/p'</em>, <em>temp_directory=None</em>, <em>worker_count=None</em>, <em>reverse=False</em><span class="sig-paren">)</span><a class="headerlink" href="#proteoclade.pcdb.create_pcdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the PCDB file which stores in silico digested peptides, genes, and organism info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>database_name</strong> (<em>string</em>) – Name of pcdb file; should be descriptive of what it contains</p></li>
+<li><p><strong>fasta_directory</strong> (<em>string</em>) – Directory of FASTAs to use as input (default ‘fastas’)</p></li>
+<li><p><strong>min_length</strong> (<em>integer</em>) – Minimum peptide amino acid count to include in database (default 7)</p></li>
+<li><p><strong>max_length</strong> (<em>integer</em>) – Maximum peptide amino acid count to include in database (default 55)</p></li>
+<li><p><strong>missed_cleavages</strong> (<em>integer</em>) – Number of times a protease is allowed to miss a cut site. (default 2)</p></li>
+<li><p><strong>m_cleave</strong> (<em>bool</em>) – Whether or not N-terminal methionines are cleaved from proteins (default True)</p></li>
+<li><p><strong>li_swap</strong> (<em>bool</em>) – Whether peptides stored will have leucines converted to isoleucines (default True)</p></li>
+<li><p><strong>rule</strong> (<em>string</em><em> or </em><em>tuple</em>) – <p>Protease rule for cutting sites (default ‘trypsin/p’).</p>
+<p>if string: must be an enzyme option available in ProteoClade. See Appendix.</p>
+<p>if tuple: must be tuple of strings, (“regex_sites”,”terminus”) ex. (r”[RK]”, “C”).
+Use tuple for custom enzyme rules.</p>
+</p></li>
+<li><p><strong>temp_directory</strong> (<em>None</em><em> or </em><em>string</em>) – <p>Directory for temporary database operations if space is a concern (default None)</p>
+<p>if None: uses working directory</p>
+</p></li>
+<li><p><strong>worker_count</strong> (<em>None</em><em> or </em><em>integer</em>) – Number of worker processes to use. Only set to experiment with performance. (default None)
+if None: determines processes up to a maximum of 6 to use. More processes does not necessarily increase performance.</p></li>
+<li><p><strong>reverse</strong> (<em>bool</em>) – Whether to reverse protein sequences prior to digestion and storage. Used for FDR mitigation.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_pcdb</span><span class="p">(</span><span class="s2">&quot;human_mouse_ref.pcdb&quot;</span><span class="p">)</span> <span class="c1">#creates a trypsin PCDB file using default settings</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">create_pcdb</span><span class="p">(</span><span class="s2">&quot;bacteria_swissprot.pcdb&quot;</span><span class="p">,</span> <span class="n">rule</span> <span class="o">=</span> <span class="s2">&quot;asp-n&quot;</span><span class="p">)</span> <span class="c1">#creates an AspN PCDB file</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Creates a .pcdb SQLite file in the working directory.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="merge-fastas">
+<h2>merge_fastas<a class="headerlink" href="#merge-fastas" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="proteoclade.pcdb.merge_fastas">
+<code class="descclassname">proteoclade.pcdb.</code><code class="descname">merge_fastas</code><span class="sig-paren">(</span><em>merged_fasta_name</em>, <em>fasta_directory='fastas'</em><span class="sig-paren">)</span><a class="headerlink" href="#proteoclade.pcdb.merge_fastas" title="Permalink to this definition">¶</a></dt>
+<dd><p>For merging fastas together in a directory.
+Used in preparation of a targeted database search, i.e. MaxQuant/Mascot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>merged_fasta_name</strong> (<em>string</em>) – Name of .fasta file that will result from merging other fastas</p></li>
+<li><p><strong>fasta_directory</strong> (<em>string</em>) – Directory from which to read fastas (default ‘fastas’)</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Creates a .fasta file containing all read fasta entries.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pcannotate.html" class="btn btn-neutral float-right" title="pcannotate Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pcutilities.html" class="btn btn-neutral float-left" title="pcutilities Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
