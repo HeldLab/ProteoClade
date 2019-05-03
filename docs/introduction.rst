@@ -16,7 +16,7 @@ ProteoClade can be installed using pip::
 
     pip install proteoclade
 
-Or if you have multiple Python versions:
+Or if you have multiple Python versions::
 
     python3 -m pip install proteoclade
 
