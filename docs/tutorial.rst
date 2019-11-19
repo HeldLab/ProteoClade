@@ -7,7 +7,7 @@ Prepare Data
 
 #. `Install ProteoClade <introduction.html#installation>`_
 
-#. `Download some example data <https://wustl.box.com/s/2ffvfnfjk1ctzj30s57utwuxib77bpg9>`_. Extract these files to a folder. "targeted_humouse_example.txt" is a truncated and reformated MaxQuant search from a patient-derived xenograft data set, while "denovo_bacteria_example.csv" is a truncated *de novo* PEAKS search from an oral microbiome data set.
+#. `Download some example data <https://wustl.box.com/s/m3pf3dilnbmjz43k1j3id7s7d57uf8co>`_. Extract these files to a folder. "targeted_humouse_example.txt" is a truncated and reformated MaxQuant search from a patient-derived xenograft data set, while "denovo_bacteria_example.csv" is a truncated *de novo* PEAKS search from an oral microbiome data set.
 
 #. Navigate to the folder with the example data, open a Python 3 shell, and import ProteoClade::
 
