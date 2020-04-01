@@ -11,7 +11,9 @@ ProteoClade helps you analyze two general categories of experiments:
 
 ProteoClade scales from two organisms to every organism in UniProt. This documentation includes examples from each kind of proteomic workflow to familiarize the user with ProteoClade's features.
 
-Check out and cite the publication at `To Be Determined <http://www.google.com>`_
+Check out and cite the publication at `PLOS Computational Biology <https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007741>`_.
+
+Mooradian AD, van der Post S, Naegle KM, Held JM (2020) ProteoClade: A taxonomic toolkit for multi-species and metaproteomic analysis. PLOS Computational Biology 16(3): e1007741.
 
 
 .. toctree::

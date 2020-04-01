@@ -33,6 +33,8 @@ In order to represent the proteomics data as gene products rather than peptides,
 1. “implicit” : ProteoClade will use anything that is not known to be a ProteoClade used or generated column. Use command `proteoclade_cols <pcconstants.html#proteoclade-cols>`_ to see columns that ProteoClade will safely ignore.
 2. “explicit” : ProteoClade will only select columns that begin with the text “sample\_”.
 
+As ProteoClade is looking for samples to quantify in this step, **please do not use "intensity", or other names found in the `proteoclade_cols` global variable, to name your sample.** These columns will be avoided in the roll_up step.
+
 The following example input format, using the “implicit” method, shows the columns that ProteoClade knows to ignore in RED with sample columns implicitly found in PURPLE:
 
 .. image:: quant_table_1.png

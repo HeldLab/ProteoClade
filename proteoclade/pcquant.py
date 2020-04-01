@@ -21,7 +21,7 @@ def roll_up(file, unique_taxon = 'species', inclusion_list = None,
     file: string
             .csv or tab .txt input file to roll peptides up to genes
     unique_taxon: string
-        Taxon level which is used to determine uniqueness and identity (default “species”)
+        Taxon level which is used to determine uniqueness and identity (default “species”). Please check the ncbi_ranks global variable for valid ranks, or use "organisms", after annotating with annotate_peptides or annotate_denovo.
     inclusion_list: None or tuple
         Taxon members that must be matched for a peptide to be included, if specified (default None)
     exclusion_list: None or tuple
