@@ -206,14 +206,15 @@ def _producer(fasta_directory, production_queue):
     production_queue: mp.Queue object
         Queue in which (gene, organism, sequence) are stored as a tuple.
     '''
-    organisms_missed = 0 #perhaps remove later
     
     def fasta_entry_check(header, sequence):
         #Check organism
         if 'OX=' in header:
             organism = int(header.split('OX=')[1].split()[0])
         else:
+            nonlocal organisms_missed
             organisms_missed += 1
+            print('SKIPPING: ', header, ' ... No Organism OX= Found.')
             return None #skip altogether if no organism info in line
             
         #Check gene; if no GN, use Uniprot Id
@@ -230,6 +231,7 @@ def _producer(fasta_directory, production_queue):
     #Parse fastas
     for file in os.listdir(fasta_directory):
         if file.endswith('.fasta'):
+            organisms_missed = 0
             with open(os.path.join(fasta_directory, file)) as input_file:
                 print('Reading from file ', file)
                 header = None
@@ -246,6 +248,8 @@ def _producer(fasta_directory, production_queue):
                         seq += line.strip()
 
                 fasta_entry_check(header, seq) #For last entry
+        if organisms_missed:
+            print(f'{organisms_missed} skipped entries from {file} due to ommitting OX= in header.')
                 
                                             
 def _worker(input_queue, output_queue, db_params, reverse):
