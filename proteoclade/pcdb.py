@@ -249,7 +249,7 @@ def _producer(fasta_directory, production_queue):
 
                 fasta_entry_check(header, seq) #For last entry
             if organisms_missed:
-                print(f'{organisms_missed} skipped entries from {file} due to ommitting OX= in header.')
+                print(f'{organisms_missed} skipped entries from {file} due to omitting OX= in header.')
                 
                                             
 def _worker(input_queue, output_queue, db_params, reverse):
