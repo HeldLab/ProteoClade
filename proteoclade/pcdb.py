@@ -9,6 +9,7 @@ Functions for other submodules
 ---------
 _hashit
 '''
+from dataclasses import asdict
 import sqlite3
 import multiprocessing as mp
 import csv
@@ -96,7 +97,7 @@ def merge_fastas(merged_fasta_name, fasta_directory = 'fastas'):
 
 def create_pcdb(database_name, fasta_directory = 'fastas',
                 min_length = 7, max_length = 55, missed_cleavages = 2,
-                m_cleave = True, li_swap = True, rule = 'trypsin/p',
+                m_excision = "always", li_swap = True, rule = 'trypsin/p',
                 temp_directory = None, worker_count = None, reverse = False):
     '''Creates the PCDB file which stores in silico digested peptides, genes, and organism info.
 
@@ -112,8 +113,9 @@ def create_pcdb(database_name, fasta_directory = 'fastas',
                 Maximum peptide amino acid count to include in database (default 55)
         missed_cleavages: integer
                 Number of times a protease is allowed to miss a cut site. (default 2)
-        m_cleave: bool
-                Whether or not N-terminal methionines are cleaved from proteins (default True)
+        m_excision: string
+                Whether or not N-terminal methionines are excised from proteins (default 'always')
+                Options: 'always', 'never', 'both'
         li_swap: bool
                 Whether peptides stored will have leucines converted to isoleucines (default True)
         rule: string or tuple
@@ -147,6 +149,8 @@ def create_pcdb(database_name, fasta_directory = 'fastas',
     assert any([x.endswith('.fasta') for x in fasta_files]), \
        f"Your fasta folder {fasta_directory} contains no '.fasta' files"
 
+    assert m_excision in ('always','never','both'), \
+        f'{m_excision} provided for m_excision but must be always, never, or both'
 
     worker_count = _enforce_worker_count(worker_count) #guarantees 1 <= workers <= 6 for performance
     print("Using ", worker_count, " worker(s).")
@@ -162,7 +166,7 @@ def create_pcdb(database_name, fasta_directory = 'fastas',
 
 
     db_time = _get_todays_date()
-    db_params = (min_length, max_length, missed_cleavages, m_cleave, li_swap, rule, db_time)
+    db_params = (min_length, max_length, missed_cleavages, m_excision, li_swap, rule, db_time)
 
     production_queue = mp.Queue(maxsize = 30000) #Must be <= ~32k for MacOS
     writing_queue = mp.Queue(maxsize = 30000)
@@ -262,13 +266,12 @@ def _worker(input_queue, output_queue, db_params, reverse):
     output_queue: mp.Queue object
         Holds (protein_seq, gene, organism, digest_results) for writer process.
     db_params: tuple
-        (min_length, max_length, missed_cleavages, m_cleave, li_swap, rule, date) to keep track of db parameters
+        (min_length, max_length, missed_cleavages, m_excision, li_swap, rule, date) to keep track of db parameters
     reverse: bool
         Whether the protein sequences are to be reversed before digestion and storage
     '''
     *params, rule, date = db_params
     rule_to_use = _cleave_rule_determination(rule)
-##    db_params = (min_length, max_length, missed_cleavages, m_cleave, li_swap, rule, db_time)
     
     while True:
         item = input_queue.get()
@@ -294,7 +297,7 @@ def _writer(writing_queue, database, worker_count, db_params, temp_directory):
     worker_count: integer
         Number of workers to use for multithreaded SQLite indexing.
     db_params: tuple
-        (min_length, max_length, missed_cleavages, m_cleave, li_swap, rule, date) to keep track of db parameters
+        (min_length, max_length, missed_cleavages, m_excision, li_swap, rule, date) to keep track of db parameters
     temp_directory: string
         Folder location to use for SQLite temporary use, specifically during indexing.
     '''
@@ -311,7 +314,7 @@ def _writer(writing_queue, database, worker_count, db_params, temp_directory):
     
     c.execute("CREATE TABLE IF NOT EXISTS MainData (Protein TEXT, Organism INTEGER, Gene TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS Reference (HashPeptide INTEGER, ProtRowID INTEGER)")
-    c.execute("BEGIN EXCLUSIVE TRANSACTION")
+    # c.execute("BEGIN EXCLUSIVE TRANSACTION") # Caused crashes on HPC 220526
 
     #Queue processing and DB insertion
     db_start_time = time.time()
@@ -347,7 +350,7 @@ def _writer(writing_queue, database, worker_count, db_params, temp_directory):
     db_param_info = (("min_length","INTEGER"),
                  ("max_length","INTEGER"),
                  ("missed_cleavages","INTEGER"),
-                 ("m_cleave","BOOL"),
+                 ("m_excision","TEXT"),
                  ("li_swap","BOOL"),
                  ("rule","TEXT"),
                  ("date","TEXT"))
@@ -361,7 +364,7 @@ def _writer(writing_queue, database, worker_count, db_params, temp_directory):
     conn.commit()
     conn.close()
 
-def _digest(sequence, min_length, max_length, missed_cleavages, m_cleave, li_swap, rule_to_use, reverse):
+def _digest(sequence, min_length, max_length, missed_cleavages, m_excision, li_swap, rule_to_use, reverse):
     '''Take a protein sequence and cut it into pieces, then hash for database insertion.
 
     Parameters
@@ -374,7 +377,7 @@ def _digest(sequence, min_length, max_length, missed_cleavages, m_cleave, li_swa
         Maximum amino acid count of peptides to keep for database.
     missed_cleavages: integer
         Number of times a protease is allowed to miss a specific site.
-    m_cleave: bool
+    m_excision: bool
         Whether or not protein N-terminal methionines are removed.
     li_swap: bool
         Whether peptides will be stored with all leucines converted to isoleucines.
@@ -385,75 +388,78 @@ def _digest(sequence, min_length, max_length, missed_cleavages, m_cleave, li_swa
         
     Returns
     -------
-    cut_set: set
+    result_set: set
         Set of integers (hashed peptides) that result from the cut rules used.
     '''
     site_specificity, cut_terminus = rule_to_use
 
-    if reverse:
-        if m_cleave and sequence[-1] == 'M':
-            sequence = sequence[:-1]
-    else:
-        if m_cleave and sequence[0] == 'M':
-            sequence = sequence[1:]
+    sequences_to_process = set()
+
+    if m_excision in ('never','both'): # Non-excised sequences
+        sequences_to_process.add(sequence)
+    if m_excision in ('always', 'both'): # Sequences that need excision
+        if not reverse and sequence[0] == 'M':
+            sequences_to_process.add(sequence[1:])
+        elif reverse and sequence[-1] == 'M':
+            sequences_to_process.add(sequence[:-1])    
+        else: # If protein never started with Methionine, but wasn't added in the first condition
+            sequences_to_process.add(sequence)
+
+    result_set = set()
+    for seq in sequences_to_process:
 
     #The following two blocks can be simplified to just use the re.match sites   
+        cut_sites = []
+        cut_peptides = []
+        sites_matched = re.finditer(site_specificity, seq)
+        for site in sites_matched:
+            cut_sites.append(site.start())        
 
-    cut_sites = []
-    cut_peptides = []
-    sites_matched = re.finditer(site_specificity, sequence)
-    for site in sites_matched:
-        cut_sites.append(site.start())        
+        ###Find sites
+        last_site = 0
 
-    ###Find sites
-    last_site = 0
+        if cut_terminus.lower() == 'c':
+            for i in cut_sites:
+                cut_peptides.append(seq[last_site:i+1])
+                last_site = i + 1
+            cut_peptides.append(seq[last_site:])
 
-    if cut_terminus.lower() == 'c':
-        for i in cut_sites:
-            cut_peptides.append(sequence[last_site:i+1])
-            last_site = i + 1
-        cut_peptides.append(sequence[last_site:])
+        elif cut_terminus.lower() == 'n':
+            for i in cut_sites:
+                cut_peptides.append(seq[last_site:i])
+                last_site = i
+            cut_peptides.append(seq[last_site:])
 
-    elif cut_terminus.lower() == 'n':
-        for i in cut_sites:
-            cut_peptides.append(sequence[last_site:i])
-            last_site = i
-        cut_peptides.append(sequence[last_site:])
-
-    cut_and_missed = list(cut_peptides) #duplicate to add to for iteration
-    
-    missed_counter = 1
-    while missed_counter <= missed_cleavages:
+        cut_and_missed = list(cut_peptides) #duplicate to add to for iteration
         
-        missed_peptides = [
-            ''.join(cut_peptides[i:i+1+missed_counter])
-            for i in range(0,len(cut_peptides) - missed_counter)
-            ] #subtract missed counter here to not duplicate c-terminal peps
+        missed_counter = 1
+        while missed_counter <= missed_cleavages:
+            
+            missed_peptides = [
+                ''.join(cut_peptides[i:i+1+missed_counter])
+                for i in range(0,len(cut_peptides) - missed_counter)
+                ] #subtract missed counter here to not duplicate c-terminal peps
 
-        cut_and_missed += missed_peptides
-        missed_counter += 1
+            cut_and_missed += missed_peptides
+            missed_counter += 1
 
-#Diagnostic code for troubleshooting digest rules
-##    with open(f'{random.randint(0,99999)}.txt','w') as w1:
-##        for i in cut_and_missed:
-##            if min_length <= len(i) <= max_length:
-##                w1.write(i+ '\n')
+        #Hash peptides
+        if li_swap:
+            cut_set = set([
+                _hashit(i.replace("L","I"))
+                for i in cut_and_missed
+                if min_length <= len(i) <= max_length
+                ])
+        else:
+            cut_set = set([
+                _hashit(i)
+                for i in cut_and_missed
+                if min_length <= len(i) <= max_length
+                ])
+        
+        result_set.update(cut_set)
 
-    #Hash peptides
-    if li_swap:
-        cut_set = set([
-            _hashit(i.replace("L","I"))
-            for i in cut_and_missed
-            if min_length <= len(i) <= max_length
-            ])
-    else:
-        cut_set = set([
-            _hashit(i)
-            for i in cut_and_missed
-            if min_length <= len(i) <= max_length
-            ])
-
-    return cut_set
+    return result_set
 ##########End create_pcdb support functions##########
 
 def _cleave_rule_determination(rule):     
