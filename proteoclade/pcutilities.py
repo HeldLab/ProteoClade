@@ -456,7 +456,8 @@ def db_stats(db):
 
     if param_vals:
         print_params = list(zip(param_names, [str(x) for x in param_vals]))
-        print(printable_params)
+        for k, v in print_params:
+            print(k, v)
 
 def _db_connect(database):
     '''Handles connections to SQLite3 databases.
