@@ -14,10 +14,10 @@ cleave_rules = {
     }
 
 #---For UniProt FASTAS
-uniprot_options = {"SR":{"reviewed":"yes", "keyword":"1185"},
-                    "S":{"reviewed":"yes"},
-                    "T":{"reviewed":"no"},
-                    "R":{"keyword":"1185"},
+uniprot_options = {"SR":{"reviewed":"true", "keyword":"KW-1185"},
+                    "S":{"reviewed":"true"},
+                    "T":{"reviewed":"false"},
+                    "R":{"keyword":"KW-1185"},
                     "A":None}
 
 #---NCBI---
