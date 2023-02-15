@@ -35,6 +35,7 @@ import datetime
 import csv
 import multiprocessing as mp
 import string
+import time
 
 from .pcconstants import ncbi_ranks, uniprot_options
 
@@ -66,8 +67,8 @@ def download_uniprot(*targets, download_folder = 'fastas'):
         Naming convention: taxonid_StartingEntryCount.fasta
         
     '''
-    uniprot_restful_url = 'https://www.uniprot.org/uniprot/?'  
-    uniprot_format = {"format":"FASTA"}
+    uniprot_restful_url = 'https://rest.uniprot.org/uniprotkb/search?'  
+    uniprot_format = {"format":"fasta"}
 
     for target in targets:
         assert type(target) in (tuple, list), f"Format for targets is container of containers: {target}"
@@ -86,7 +87,7 @@ def download_uniprot(*targets, download_folder = 'fastas'):
         else:
             try:
                 int(taxon)
-                quotable_taxon = f'taxonomy:"{taxon}"'
+                quotable_taxon = f'taxonomy_id:{taxon}'
             except ValueError:
                 print("Not a valid taxon ID: ", taxon)
                 continue
@@ -101,37 +102,38 @@ def download_uniprot(*targets, download_folder = 'fastas'):
         query = {"query":combined_string}
 
         #check header first for total number of values
-        query_for_headers = uniprot_restful_url + urlencode(query)
+        query_for_size = {"size":1}
+        query_for_size.update(query)
+        query_for_headers = uniprot_restful_url + urlencode(query_for_size)
         header_check = request.urlopen(query_for_headers)
         total_results = int(header_check.headers['X-Total-Results'])
         print(f'{total_results} total results for taxon {taxon}.')
 
-        #Download in batches to prevent HTTP from dying on big files
-        missed_downloads = []
-        entries_per_batch = 1000000 #max entries to get in one http request
+        # Download in batches
+        entries_per_batch = 500 #max entries to get in one http request; upper limit 500 per UniProt 2022 update
+
+        query.update({"size":entries_per_batch})
+        query.update(uniprot_format)
+        full_url = uniprot_restful_url + urlencode(query) # Initial URL for downloading
+
         for i in range(0, total_results, entries_per_batch):
             file_description = (f'Taxon: {taxon}, Starting Count: {i}')
-            
-            try:
-##                query.update({'compress':'yes'}) Only if you want to unzip
-                query.update({'offset':i, 'limit': entries_per_batch})
-                query.update(uniprot_format)
 
-                full_url = uniprot_restful_url + urlencode(query)
-                target_file = os.path.join(download_folder, f'{taxon}_{i}.fasta')
-                _download(full_url, target_file, file_description = file_description)
-            except Exception: #null byte sent/server messing up ; change ValueError or http.client.IncompleteRead
-                missed_downloads.append((full_url, target_file, file_description))
+            # Try to exhaustively fetch
+            while True:
+                
+                try:
+                    target_file = os.path.join(download_folder, f'{taxon}_{i}.fasta')
+                    download_result = _download(full_url, target_file, file_description = file_description)
+                    _, result_content = download_result
 
-        while missed_downloads: #exhaustively fetch
-            try:
-                params = missed_downloads.pop()
-                print("Attempting re-download: ", *params)
-                _download(*params)
-            except Exception: #Same, see as above
-                missed_downloads.append(params)
-
-    print("All downloads have finished.")
+                    if result_content["Link"]:
+                        full_url = result_content["Link"].split()[0][1:-2]
+                    break
+                except Exception as e:
+                    print(f'Exception occurred: {e}')
+                    print(f'Attempting to re-download URL {full_url}')
+                    time.sleep(5)
 
 def download_uniprot_batch(file, download_folder = 'fastas'):
     '''Download UniProt entries from a tab delimited txt file
@@ -362,7 +364,8 @@ def _download(target, file_path, file_description = None):
         print(f"Download started for {file_description}.")
     else:
         print(f"Download started.")
-    request_file = request.urlretrieve(target, file_path, reporthook = lambda *args: _fetch_progress(*args, description = file_description)) #make an intermediate function with lambda to take the 3 args and tack another on
+    #make an intermediate function with lambda to take the 3 args and tack another on
+    return(request.urlretrieve(target, file_path, reporthook = lambda *args: _fetch_progress(*args, description = file_description))) 
     
 def _fetch_progress(transferred_blocks, block_size, total_size, description):
     '''Prints file transfer progress'''
